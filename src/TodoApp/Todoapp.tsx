@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTodo } from "./todoSlice";
 
 const Todoapp = () => {
@@ -9,12 +9,16 @@ const Todoapp = () => {
   // for data add in todo
   const todoData = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (titleRef.current !== null && desRef.current !== null) {
-      let obj = {
-        title: titleRef.current.value,
-        discription: desRef.current.value,
-      };
-      dispatch(addTodo(obj));
+    if (titleRef.current !== null && desRef.current !== null ) {
+      if(titleRef.current.value=="" &&desRef.current.value==""){
+          alert("Please fill all the field")
+      }else{
+        let obj = {
+          title: titleRef.current.value,
+          discription: desRef.current.value,
+        };
+        dispatch(addTodo(obj));
+      }
     }
     e.currentTarget.reset();
   };
